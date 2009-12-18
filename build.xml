@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="com.sca.nws" default="dist">
+
+	<property name="build" location="build"/>
+	<property name="src" location="com"/>
+	<property name="dist" location="dist"/>
+
+	<target name="clean">
+		<echo message="clean"/>
+		<delete dir="${build}"/>
+		<delete dir="${dist}"/>
+	</target>
+	
+	<target name="init">
+		<echo message="Init"/>
+		<tstamp/>
+		<mkdir dir="${build}"/>
+	</target>
+
+	<target name="compile" depends="init">
+		<echo message="compile"/>
+		<javac srcdir="${src}" target="1.5" destdir="${build}"/>
+	</target>
+
+	<target name="dist" depends="compile">
+		<echo message="dist"/>
+		<mkdir dir="${dist}"/>
+		<jar jarfile="${dist}/java-big-${DSTAMP}.jar" basedir="${build}"/>
+	</target>
+
+</project>
